@@ -1,0 +1,10 @@
+# Binary files
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go specific
+/bin/
+/vendor/
