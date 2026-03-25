@@ -4,20 +4,31 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
+	fmt.Println("Welcome to the Pokedex!")
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for {
 		fmt.Print("Pokedex > ")
 		scanner.Scan()
 		enteredText := scanner.Text()
-		formattedText := strings.ToLower(enteredText)
-		words := strings.Fields(formattedText)
+		words := cleanInput(enteredText)
+		if len(words) == 0 {
+			continue
+		}
 		firstWord := words[0]
-		fmt.Printf("Your command was: %s \n", firstWord)
+		// onderstaand blok ivm maps: theorie herhalen
+		if cmd, ok := commandLookUp[firstWord]; ok {
+			err := cmd.callback()
+			if err != nil {
+				fmt.Println(err)
+			}
+		} else {
+			fmt.Println("Unknown command")
+		}
+
 	}
 
 }
