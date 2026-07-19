@@ -9,6 +9,7 @@ import (
 func main() {
 	fmt.Println("Welcome to the Pokedex!")
 	scanner := bufio.NewScanner(os.Stdin)
+	var conf config
 
 	for {
 		fmt.Print("Pokedex > ")
@@ -21,7 +22,7 @@ func main() {
 		firstWord := words[0]
 		// onderstaand blok ivm maps: theorie herhalen
 		if cmd, ok := commandLookUp[firstWord]; ok {
-			err := cmd.callback()
+			err := cmd.callback(&conf)
 			if err != nil {
 				fmt.Println(err)
 			}
