@@ -16,6 +16,10 @@ type cacheEntry struct {
 	val       []byte
 }
 
+type Pokemon struct {
+	Name string `json:"name"`
+}
+
 func NewCache(interval time.Duration) *Cache {
 	c := &Cache{
 		entries:  make(map[string]cacheEntry),
